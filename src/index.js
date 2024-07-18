@@ -16,9 +16,10 @@ module.exports = function toReadable (number) {
     } else if (num.length === 2) {
         if (num < 20) {
             result = binary[num - 10]
+        } else {
+            result = dozens[Math.floor(num / 10)] + (num % 10 !== 0 ? " " + singular[num % 10] : "")
         }
     }
-
 
 
     return result;
