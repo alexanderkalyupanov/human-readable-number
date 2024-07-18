@@ -20,10 +20,13 @@ module.exports = function toReadable (number) {
             result = dozens[Math.floor(number / 10)] + (number % 10 !== 0 ? " " + singular[number % 10] : "")
         }
     } else if (num.length === 3) {
-        result = hundredths[Math.floor(number / 100)] + " " + toReadable(number % 100)
+        if (number % 100 == 0) {
+            result = hundredths[Math.floor(number / 100)]
+        } else {
+            result = hundredths[Math.floor(number / 100)] + " " + toReadable(number % 100)
+        }
+
     }
-
-
 
     return result;
 }
