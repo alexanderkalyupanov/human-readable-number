@@ -17,16 +17,15 @@ module.exports = function toReadable (number) {
         if (num < 20) {
             result = binary[number - 10]
         } else {
-            result = dozens[Math.floor(number / 10)] + (number % 10 !== 0 ? " " + singular[number % 10] : "")
+            result = `${dozens[Math.floor(number / 10)]} ${(number % 10 !== 0 ? " " + singular[number % 10] : "")}`
         }
     } else if (num.length === 3) {
         if (number % 100 == 0) {
             result = hundredths[Math.floor(number / 100)]
         } else {
-            result = hundredths[Math.floor(number / 100)] + " " + toReadable(number % 100)
+            result = `${hundredths[Math.floor(number / 100)]} ${toReadable(number % 100)}`
         }
-
     }
 
-    return result;
+    return result.replace(/\s+/g, ' ').trim();
 }
